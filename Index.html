@@ -1,14 +1,13 @@
-# Manual de Operación: Reactores Epoxemex
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manual de Operación: Reactores Epoxemex</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     
     <style>
         :root {
@@ -198,7 +197,6 @@
 </head>
 <body class="bg-amber-50">
 
-    <!-- Encabezado -->
     <header class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
@@ -215,7 +213,6 @@
             </div>
         </div>
         
-        <!-- Navegación Principal -->
         <nav class="bg-sky-900 flex flex-wrap justify-center p-1 shadow-inner">
             <button class="nav-btn active" data-target="inicio">Inicio</button>
             <button class="nav-btn" data-target="seguridad">Protocolos de Seguridad</button>
@@ -226,10 +223,8 @@
         </nav>
     </header>
 
-    <!-- Contenedor Principal de Contenido -->
     <main id="content-container" class="p-4 md:p-8 max-w-7xl mx-auto">
 
-        <!-- Sección: Inicio -->
         <section id="inicio" class="content-section space-y-6">
             <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">Bienvenido al Sistema de Control de Reactores</h2>
             <p class="text-lg">
@@ -296,7 +291,6 @@
             </div>
         </section>
 
-        <!-- Sección: Protocolos de Seguridad -->
         <section id="seguridad" class="content-section hidden space-y-6">
             <h2 class="text-3xl font-bold text-red-700 border-b-2 border-red-500 pb-2">Protocolos Fundamentales de Seguridad</h2>
             <div class="critical-alert p-5 rounded-lg">
@@ -309,7 +303,6 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Riesgo 1: Agua -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500 space-y-4 card-hover">
                     <div class="flex items-center mb-3">
                         <span class="text-2xl mr-3">💧</span>
@@ -333,7 +326,6 @@
                     </div>
                 </div>
                 
-                <!-- Riesgo 2: Degradación -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500 space-y-4 card-hover">
                     <div class="flex items-center mb-3">
                         <span class="text-2xl mr-3">💨</span>
@@ -354,7 +346,6 @@
                     </div>
                 </div>
 
-                <!-- Riesgo 3: Fugas y EPP -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500 space-y-4 card-hover">
                     <div class="flex items-center mb-3">
                         <span class="text-2xl mr-3">🔥</span>
@@ -370,7 +361,7 @@
                     </div>
                     <div class="bg-sky-50 p-4 rounded-lg">
                         <p class="font-semibold text-sky-800 mb-2">Equipo de Protección Personal:</p>
-                         <ul class="list-disc list-inside space-y-1 pl-2 text-sm">
+                           <ul class="list-disc list-inside space-y-1 pl-2 text-sm">
                             <li>Guantes para alta temperatura</li>
                             <li>Protección facial completa</li>
                             <li>Ropa resistente al fuego</li>
@@ -414,14 +405,12 @@
             </div>
         </section>
 
-        <!-- Sección: Procedimientos de Operación -->
         <section id="procedimientos" class="content-section hidden space-y-6">
             <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">Procedimientos de Operación</h2>
             <p class="text-lg">
                 Esta sección detalla el "cómo" operar el sistema paso a paso. Utilice las pestañas para navegar entre los procedimientos clave.
             </p>
 
-            <!-- Sub-Navegación de Procedimientos -->
             <nav class="flex flex-wrap border-b-2 border-sky-200 bg-white rounded-t-lg overflow-hidden" id="procedimientos-nav">
                 <button class="tab-btn active" data-target="puesta-marcha-content">Puesta en Marcha</button>
                 <button class="tab-btn" data-target="operacion-normal-content">Operación de Calentamiento</button>
@@ -431,13 +420,12 @@
 
             <div id="procedimientos-content-container" class="p-6 bg-white rounded-b-lg shadow-inner">
                 
-                <!-- Contenido Pestaña 1: Puesta en Marcha -->
                 <div id="puesta-marcha-content" class="sub-content space-y-6">
                     <div class="flex items-center mb-4">
                         <span class="bg-red-100 text-red-700 rounded-full p-3 mr-4 text-xl">⚠️</span>
                         <h3 class="text-2xl font-semibold text-red-700">Procedimiento Crítico: Puesta en Marcha Inicial</h3>
                     </div>
-                    <p>Este procedimiento es <strong>obligatorio</strong> antes del primer arranque o después de una parada prolongada para eliminar de forma segura cualquier traza de agua.</p>
+                    <p>Este procedimiento es **obligatorio** antes del primer arranque o después de una parada prolongada para eliminar de forma segura cualquier traza de agua.</p>
                     
                     <div class="critical-alert p-5 rounded-lg">
                         <h4 class="text-lg font-semibold text-amber-900 mb-3">Secuencia de Calentamiento Controlado</h4>
@@ -500,7 +488,6 @@
                     </ol>
                 </div>
 
-                <!-- Contenido Pestaña 2: Operación de Calentamiento -->
                 <div id="operacion-normal-content" class="sub-content hidden space-y-6">
                     <h3 class="text-2xl font-semibold text-sky-800">Operación de Calentamiento de un Reactor</h3>
                     
@@ -555,7 +542,6 @@
                     </ol>
                 </div>
                 
-                <!-- Contenido Pestaña 3: PID R1 -->
                 <div id="pid-r1-content" class="sub-content hidden space-y-6">
                     <h3 class="text-2xl font-semibold text-sky-800">Operación del Controlador PID (Solo Reactor 1)</h3>
                     <p>El Reactor 1 cuenta con controlador automático IBS BatchControl CTR210i para control preciso de temperatura.</p>
@@ -597,7 +583,6 @@
                     </ol>
                 </div>
 
-                <!-- Contenido Pestaña 4: Parada -->
                 <div id="parada-sistema-content" class="sub-content hidden space-y-6">
                     <h3 class="text-2xl font-semibold text-sky-800">Parada del Sistema</h3>
                     <div class="grid md:grid-cols-2 gap-6">
@@ -610,475 +595,3 @@
                                 <li>Apagar el quemador del calentador</li>
                                 <li><strong class="text-orange-600">Mantener bomba de circulación funcionando</strong> hasta T° < 92°C</li>
                                 <li>Detener la bomba de circulación</li>
-                            </ol>
-                        </div>
-                        <div class="critical-alert p-5 rounded-lg card-hover">
-                            <h4 class="text-xl font-semibold text-amber-900 mb-4 flex items-center">
-                                <span class="bg-amber-100 text-amber-800 rounded-full p-2 mr-3">🚨</span>
-                                Parada de Emergencia
-                            </h4>
-                            <ol class="list-decimal list-inside space-y-3">
-                                <li>Activar botón de paro de emergencia (local o remoto)</li>
-                                <li>Corte inmediato de combustible al quemador</li>
-                                <li>Bomba de circulación <strong class="text-orange-600">debe continuar</strong> si es seguro</li>
-                                <li>No reiniciar hasta resolución de causa por personal autorizado</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección: Parámetros de Proceso -->
-        <section id="parametros" class="content-section hidden space-y-6">
-            <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">Parámetros de Proceso</h2>
-            <p class="text-lg">
-                Seleccione un reactor para ver sus productos, parámetros de operación y tiempos de proceso.
-            </p>
-            
-            <!-- Selector de Reactor -->
-            <div class="mb-6">
-                <label for="reactor-selector" class="block text-lg font-medium text-sky-800 mb-3">Seleccionar Reactor:</label>
-                <select id="reactor-selector" class="w-full max-w-md p-3 border border-sky-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500 text-lg bg-white">
-                    <option value="">-- Elija un reactor --</option>
-                    <option value="R-1">Reactor 1</option>
-                    <option value="R-2">Reactor 2</option>
-                    <option value="R-4">Reactor 4</option>
-                    <option value="R-6">Reactor 6</option>
-                    <option value="R-7">Reactor 7</option>
-                    <option value="R-9">Reactor 9</option>
-                </select>
-            </div>
-            
-            <!-- Contenedor para el Gráfico -->
-            <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
-                <h3 class="text-2xl font-semibold text-center text-sky-800 mb-4">Tiempos de Proceso por Producto</h3>
-                <div class="chart-container">
-                    <canvas id="procesoChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Contenedor para Fichas de Datos -->
-            <div class="mt-8">
-                <h3 class="text-2xl font-semibold text-sky-800 mb-4">Fichas de Datos del Reactor</h3>
-                <div id="reactor-data-display" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="text-center p-8 bg-gray-50 rounded-xl shadow-inner col-span-full">
-                        <p class="text-xl text-gray-500">Seleccione un reactor para ver sus datos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección: Conexiones del Sistema -->
-        <section id="interfaces" class="content-section hidden space-y-6">
-            <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">Conexiones del Sistema</h2>
-            <p class="text-lg">
-                Sección de referencia para consultar los componentes de hardware, las direcciones IP del sistema SCADA y las bitácoras de procedimientos críticos.
-            </p>
-            
-            <!-- Sub-Navegación de Conexiones del Sistema -->
-            <nav class="flex flex-wrap border-b-2 border-sky-200 bg-white rounded-t-lg overflow-hidden" id="interfaces-nav">
-                <button class="tab-btn active" data-target="scada-ips-content">Conexión SCADA</button>
-                <button class="tab-btn" data-target="gabinete-local-content">Gabinete de Reactor</button>
-                <button class="tab-btn" data-target="gabinete-tanques-content">Gabinetes de Tanques</button>
-                <button class="tab-btn" data-target="bitacoras-content">Bitácoras</button>
-            </nav>
-
-            <div id="interfaces-content-container" class="p-6 bg-white rounded-b-lg shadow-inner space-y-6">
-
-                <!-- Contenido Pestaña 1: SCADA IPs -->
-                <div id="scada-ips-content" class="sub-content space-y-6">
-                    <h3 class="text-2xl font-semibold text-sky-800">Direcciones IP del Sistema SCADA</h3>
-                    <p>El acceso remoto se realiza a través de un navegador web. Cada IP tiene un propósito específico:</p>
-                    <div class="overflow-x-auto rounded-lg shadow-sm">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-sky-100">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-sky-800 uppercase tracking-wider">Equipo</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-sky-800 uppercase tracking-wider">Sistema</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-sky-800 uppercase tracking-wider">Dirección IP</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-sky-800 uppercase tracking-wider">Propósito Principal</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr class="bg-yellow-50">
-                                    <td class="px-6 py-4 whitespace-nowrap font-medium">Unitronics</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Circuito Térmico</td>
-                                    <td class="px-6 py-4 whitespace-nowrap font-mono font-bold">10.41.131.204</td>
-                                    <td class="px-6 py-4 font-bold text-orange-600">OPERACIÓN Y CONTROL REMOTO (Sala de Mando)</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap font-medium">ICLincks</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Circuito Térmico</td>
-                                    <td class="px-6 py-4 whitespace-nowrap font-mono font-bold">10.41.131.203</td>
-                                    <td class="px-6 py-4">VISUALIZACIÓN Y GRÁFICOS (Pantallas Táctiles)</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap font-medium">Unitronics</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Supervisión Producción</td>
-                                    <td class="px-6 py-4 whitespace-nowrap font-mono">10.41.131.201</td>
-                                    <td class="px-6 py-4">Muestra T° y Presión del producto</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap font-medium">ICLincks</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Supervisión Producción</td>
-                                    <td class="px-6 py-4 whitespace-nowrap font-mono">10.41.131.206</td>
-                                    <td class="px-6 py-4">Sistema en desarrollo</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Contenido Pestaña 2: Gabinete Reactor -->
-                <div id="gabinete-local-content" class="sub-content hidden space-y-4">
-                    <h3 class="text-2xl font-semibold text-sky-800">Componentes del Gabinete de Control del Reactor</h3>
-                    <p>Permite la operación local. Sus componentes clave son:</p>
-                    <ul class="list-disc list-inside space-y-3">
-                        <li><strong class="text-orange-600">Selectores de Modo:</strong> (Local / Fuera de Servicio / Remoto) para transferir el control</li>
-                        <li><strong class="text-orange-600">Controles Válvulas ON/OFF:</strong> Botones (Verde/Rojo) y Lámparas indicadoras</li>
-                        <li><strong class="text-orange-600">Controles Válvulas Proporcionales:</strong> Potenciómetro para ajustar % de apertura y pantalla digital de valor real</li>
-                        <li><strong class="text-orange-600">Pantalla Táctil:</strong> Consulta la conexión con interfaz web de ICLincks (Gráficos) en la IP <span class="font-mono">10.41.131.203</span></li>
-                        <li><strong class="text-orange-600">Pantalla de Temperatura:</strong> Muestra T° del producto (alterna 2 reactores c/ 5 seg)</li>
-                        <li><strong class="text-orange-600">Botón de Paro de Emergencia:</strong> Corta suministro eléctrico a válvulas y detiene agitador (en modo remoto)</li>
-                    </ul>
-                </div>
-                
-                <!-- Contenido Pestaña 3: Gabinete Tanques -->
-                <div id="gabinete-tanques-content" class="sub-content hidden space-y-4">
-                    <h3 class="text-2xl font-semibold text-sky-800">Componentes de los Gabinetes de Tanques</h3>
-                    <p>Gestionan los tanques de servicio (aceite caliente, aceite frío, agua helada)</p>
-                    <ul class="list-disc list-inside space-y-3">
-                        <li><strong class="text-orange-600">Protección de Nivel Bajo:</strong> Evita que las bombas operen en vacío</li>
-                        <li><strong class="text-orange-600">Protección de Nivel Alto:</strong> Evita el sobrellenado</li>
-                        <li><strong class="text-orange-600">Control de Bombas y Válvulas:</strong> Operación Local/Remota de bombas y válvula de nitrógeno (tanque aceite caliente)</li>
-                        <li><strong class="text-orange-600">Alarmas:</strong> Sonora y visual para niveles anormales</li>
-                    </ul>
-                </div>
-                
-                <!-- Contenido Pestaña 4: Bitácoras -->
-                <div id="bitacoras-content" class="sub-content hidden space-y-6">
-                    <h3 class="text-2xl font-semibold text-sky-800">Bitácoras de Puesta en Marcha</h3>
-                    <p>Estas son representaciones de las bitácoras físicas que deben completarse durante los procedimientos críticos</p>
-                    
-                    <!-- Bitácora B.1 -->
-                    <div class="info-box p-6 rounded-xl">
-                        <h4 class="text-xl font-semibold text-sky-800 mb-4">Bitácora de Verificaciones Previas al Arranque</h4>
-                        <ul class="list-none space-y-3">
-                            <li class="font-semibold text-sky-700">Niveles y Válvulas</li>
-                            <li class="pl-4">□ 1. Nivel de aceite en tanque de expansión (aprox. 1/3 en frío)</li>
-                            <li class="pl-4">□ 2. Posición de válvulas manuales del circuito principal (abiertas)</li>
-                            <li class="pl-4">□ 3. Posición de válvulas de aislamiento de reactores (cerradas)</li>
-                            <li class="pl-4">□ 4. Suministro de nitrógeno para inertización (disponible)</li>
-                            
-                            <li class="font-semibold mt-4 text-sky-700">Equipos y Seguridad</li>
-                            <li class="pl-4">□ 5. Enclavamientos de seguridad (probados / verificados)</li>
-                            <li class="pl-4">□ 6. Botones de Paro de Emergencia (liberados)</li>
-                            <li class="pl-4">□ 7. Suministro eléctrico a bombas y quemador (activo)</li>
-
-                            <li class="font-semibold mt-4 text-sky-700">Arranque de Circulación</li>
-                            <li class="pl-4">□ 8. Bomba de circulación principal (arrancada, giro correcto)</li>
-                            <li class="pl-4">□ 9. Venteo de aire en puntos altos (completado, fluya solo aceite)</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Bitácora B.2 -->
-                    <div class="critical-alert p-6 rounded-xl">
-                        <h4 class="text-xl font-semibold text-amber-900 mb-4">Bitácora de Calentamiento Controlado (Eliminación de Humedad)</h4>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-300">
-                                <thead class="bg-amber-100">
-                                    <tr>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-amber-800 uppercase">Punto de Ajuste</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-amber-800 uppercase">Hora</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-amber-800 uppercase">Temp. Real</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-amber-800 uppercase">Observaciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-amber-200">
-                                    <tr><td class="px-4 py-2">50°C</td><td class="px-4 py-2"></td><td class="px-4 py-2"></td><td class="px-4 py-2"></td></tr>
-                                    <tr><td class="px-4 py-2">55°C</td><td class="px-4 py-2"></td><td class="px-4 py-2"></td><td class="px-4 py-2"></td></tr>
-                                    <tr><td class="px-4 py-2">... (incrementos de 5°C c/30 min)</td><td class="px-4 py-2"></td><td class="px-4 py-2"></td><td class="px-4 py-2"></td></tr>
-                                    <tr class="font-bold bg-yellow-100"><td class="px-4 py-2">90°C</td><td class="px-4 py-2"></td><td class="px-4 py-2"></td><td class="px-4 py-2">MÁXIMA PRECAUCIÓN</td></tr>
-                                    <tr class="font-bold bg-yellow-100"><td class="px-4 py-2">95°C</td><td class="px-4 py-2"></td><td class="px-4 py-2"></td><td class="px-4 py-2">(No subir si hay ruidos)</td></tr>
-                                    <tr class="font-bold bg-yellow-100"><td class="px-4 py-2">100°C</td><td class="px-4 py-2"></td><td class="px-4 py-2"></td><td class="px-4 py-2">(No subir si hay ruidos)</td></tr>
-                                    <tr class="font-bold bg-green-100"><td class="px-4 py-2">105-110°C</td><td class="px-4 py-2"></td><td class="px-4 py-2"></td><td class="px-4 py-2">Inicia permanencia (mín. 2-4 hrs)</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección: Guía Rápida -->
-        <section id="guia" class="content-section hidden space-y-6">
-            <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">Guía Rápida de Operación</h2>
-            <p class="text-lg">
-                Para supervisores experimentados. Siga estos pasos para una operación estándar:
-            </p>
-            <div class="p-6 bg-white rounded-xl shadow-md card-hover">
-                <ol class="list-decimal list-inside space-y-4 text-lg">
-                    <li class="pb-3 border-b border-gray-100">
-                        <strong class="font-semibold text-sky-800">Verificar Paro de Emergencia:</strong> Asegurarse de que no esté activado
-                    </li>
-                    <li class="pb-3 border-b border-gray-100">
-                        <strong class="font-semibold text-sky-800">Consultar Parámetros:</strong> Revisar la sección "Parámetros de Proceso" para T°, tiempos y Puntos de Ajuste
-                    </li>
-                    <li class="pb-3 border-b border-gray-100">
-                        <strong class="font-semibold text-sky-800">Preparar Pantalla Táctil:</strong> Iniciar sesión en el gabinete (<span class="font-mono text-sky-800">10.41.131.203</span>) y seleccionar el reactor
-                    </li>
-                    <li class="pb-3 border-b border-gray-100">
-                        <strong class="font-semibold text-sky-800">Seleccionar Modo:</strong> Usar selectores del gabinete (Local/Remoto) e informar al cuarto de control
-                    </li>
-                    <li class="pb-3 border-b border-gray-100">
-                        <strong class="font-semibold text-sky-800">Operar:</strong>
-                        <ul class="list-disc list-inside pl-6 text-base mt-2 space-y-1">
-                            <li><strong class="text-orange-600">Local:</strong> Usar botones y potenciómetros</li>
-                            <li><strong class="text-orange-600">Remoto:</strong> Cuarto de control opera desde <span class="font-mono text-sky-800">10.41.131.204</span></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong class="font-semibold text-sky-800">Supervisar:</strong> Vigilar constantemente las variables y compararlas con los parámetros objetivo
-                    </li>
-                </ol>
-                <div class="mt-6 text-center font-bold text-red-700 bg-red-50 p-4 rounded-lg border border-red-200">
-                    ¡NUNCA opere manualmente las válvulas desde sus manerales sin autorización de mantenimiento!
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="text-center p-6 mt-8 text-sm text-sky-700 border-t border-sky-200 bg-white">
-        Manual de Operación v2.3 | Fecha: 14 de octubre de 2025 | Sistema Epoxemex
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- Base de Datos de Parámetros ---
-            const database = {
-                'R-1': {
-                    products: [
-                        { id: "EPO-1 (33248)", etapa: "Enfriamiento", tiempo: 10, nitrogeno: "Burbujeo (arriba y abajo)", notas: "N₂ al inicio y fin del proceso." },
-                        { id: "EPO-35", etapa: "Enfriamiento", tiempo: 0, nitrogeno: "Al agregar Nonil", notas: "No requiere enfriamiento." },
-                        { id: "EPO-50", etapa: "Enfriamiento", tiempo: 7, nitrogeno: "Burbujeo (arriba y abajo)", notas: "N₂ al agregar Nonil." }
-                    ]
-                },
-                'R-2': {
-                    products: [
-                        { id: "YD-114C (33010)", etapa: "Calentamiento", temp: "21°C a 80°C", tiempo: 2, setPoint: "120°C" },
-                        { id: "EPO-50G (33464)", etapa: "Enfriamiento", tiempo: 2, nitrogeno: "Burbujeo (arriba y abajo)", notas: "N₂ desde inicio a fin." }
-                    ]
-                },
-                'R-4': {
-                    products: [
-                        { id: "LM-555 (33036)", etapa: "Calentamiento", temp: "23°C a 65°C", tiempo: 1.5, setPoint: "120°C", notas: "Instructivo no indica N₂." }
-                    ]
-                },
-                'R-6': {
-                     products: [
-                        { id: "80-300", etapa: "N/A", tiempo: 0, nitrogeno: "Burbujeo (arriba y abajo)", notas: "Envasado directo, no enfría." }
-                    ]
-                },
-                'R-7': {
-                    products: [
-                        { id: "EPO-815L (33851)", etapa: "Calentamiento", temp: "24°C a 185°C", tiempo: 14, setPoint: "120°C a 220°C" },
-                        { id: "EPO-815L (33851)", etapa: "Enfriamiento", temp: "187°C a 120°C", tiempo: 4, nitrogeno: "Burbujeo (abajo)" },
-                        { id: "EPO-815L (33851)", etapa: "Vacío", tiempo: 2.5, presion: "10 mmHg", notas: "Tiempo total: 19.5 hrs." }
-                    ]
-                },
-                'R-9': {
-                    products: [
-                        { id: "EPO-1 (33248)", etapa: "Enfriamiento", tiempo: 12.5, nitrogeno: "Burbujeo (arriba y abajo)", notas: "Similar a R-1." },
-                        { id: "EPO-35", etapa: "Enfriamiento", tiempo: 0, nitrogeno: "Al agregar Nonil", notas: "No requiere enfriamiento." },
-                        { id: "EPO-50 (33348)", etapa: "Enfriamiento", tiempo: 7, nitrogeno: "Burbujeo (arriba y abajo)", notas: "N₂ desde inicio a fin." }
-                    ]
-                }
-            };
-
-            // --- Lógica de Navegación Principal ---
-            const navButtons = document.querySelectorAll('.nav-btn');
-            const contentSections = document.querySelectorAll('.content-section');
-
-            navButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const targetId = btn.getAttribute('data-target');
-                    
-                    // Actualizar botones de navegación
-                    navButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    // Mostrar/ocultar secciones
-                    contentSections.forEach(section => {
-                        if (section.id === targetId) {
-                            section.classList.remove('hidden');
-                        } else {
-                            section.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-
-            // --- Lógica de Sub-Navegación (Pestañas) ---
-            function setupTabs(navSelector, contentContainerId) {
-                const tabButtons = document.querySelectorAll(navSelector);
-                const tabContents = document.getElementById(contentContainerId).querySelectorAll('.sub-content');
-
-                tabButtons.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const targetId = btn.getAttribute('data-target');
-                        
-                        // Actualizar botones de pestañas
-                        tabButtons.forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-
-                        // Mostrar/ocultar contenidos
-                        tabContents.forEach(content => {
-                            if (content.id === targetId) {
-                                content.classList.remove('hidden');
-                            } else {
-                                content.classList.add('hidden');
-                            }
-                        });
-                    });
-                });
-            }
-
-            // Configurar pestañas de procedimientos
-            setupTabs('#procedimientos-nav .tab-btn', 'procedimientos-content-container');
-            
-            // Configurar pestañas de interfaces
-            setupTabs('#interfaces-nav .tab-btn', 'interfaces-content-container');
-
-            // --- Lógica de Gráfico Interactivo y Parámetros ---
-            const reactorSelector = document.getElementById('reactor-selector');
-            const dataDisplay = document.getElementById('reactor-data-display');
-            
-            // Configuración del gráfico
-            const chartConfig = {
-                type: 'bar',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'Tiempo de Proceso (horas)',
-                        data: [],
-                        backgroundColor: [
-                            'rgba(2, 132, 199, 0.6)',
-                            'rgba(249, 115, 22, 0.6)',
-                            'rgba(23, 165, 137, 0.6)',
-                            'rgba(107, 114, 128, 0.6)',
-                            'rgba(2, 132, 199, 0.8)',
-                            'rgba(249, 115, 22, 0.8)',
-                        ],
-                        borderColor: [
-                            'rgba(2, 132, 199, 1)',
-                            'rgba(249, 115, 22, 1)',
-                            'rgba(23, 165, 137, 1)',
-                            'rgba(107, 114, 128, 1)',
-                            'rgba(2, 132, 199, 1)',
-                            'rgba(249, 115, 22, 1)',
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Tiempo (horas)',
-                                font: { size: 14 }
-                            }
-                        },
-                        x: {
-                             ticks: {
-                                autoSkip: false,
-                                maxRotation: 45,
-                                minRotation: 0
-                             }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${context.dataset.label}: ${context.raw} horas`;
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            
-            // Inicializar gráfico
-            const ctx = document.getElementById('procesoChart').getContext('2d');
-            const myChart = new Chart(ctx, chartConfig);
-            
-            // Función para actualizar datos del reactor
-            function updateReactorData(reactorId) {
-                const data = database[reactorId];
-                dataDisplay.innerHTML = '';
-                
-                const chartLabels = [];
-                const chartData = [];
-
-                if (!data || data.products.length === 0) {
-                    dataDisplay.innerHTML = `
-                        <div class="text-center p-8 bg-gray-50 rounded-xl shadow-inner col-span-full">
-                            <p class="text-xl text-gray-500">No hay datos de proceso para este reactor.</p>
-                        </div>`;
-                    myChart.data.labels = [];
-                    myChart.data.datasets[0].data = [];
-                    myChart.update();
-                    return;
-                }
-                
-                // Generar tarjetas de productos
-                data.products.forEach(prod => {
-                    let cardHTML = `
-                        <div class="bg-white p-5 rounded-xl shadow-md border-l-4 border-orange-500 space-y-3 card-hover">
-                            <h4 class="text-xl font-bold text-sky-800">${prod.id}</h4>
-                            <p><strong class="font-semibold text-orange-600">Etapa:</strong> ${prod.etapa}</p>
-                            <p><strong class="font-semibold">Tiempo:</strong> ${prod.tiempo} horas</p>
-                    `;
-                    if (prod.temp) cardHTML += `<p><strong class="font-semibold">Rango Temp.:</strong> ${prod.temp}</p>`;
-                    if (prod.setPoint) cardHTML += `<p><strong class="font-semibold">Set Point Aceite:</strong> ${prod.setPoint}</p>`;
-                    if (prod.nitrogeno) cardHTML += `<p><strong class="font-semibold">Uso de N₂:</strong> ${prod.nitrogeno}</p>`;
-                    if (prod.presion) cardHTML += `<p><strong class="font-semibold">Presión:</strong> ${prod.presion}</p>`;
-                    if (prod.notas) cardHTML += `<p class="text-sm text-gray-600 pt-3 border-t mt-3"><strong>Notas:</strong> ${prod.notas}</p>`;
-                    
-                    cardHTML += `</div>`;
-                    dataDisplay.innerHTML += cardHTML;
-
-                    // Preparar datos para el gráfico
-                    chartLabels.push(`${prod.id.split(' ')[0]} - ${prod.etapa}`);
-                    chartData.push(prod.tiempo);
-                });
-
-                // Actualizar gráfico
-                myChart.data.labels = chartLabels;
-                myChart.data.datasets[0].data = chartData;
-                myChart.update();
-            }
-
-            // Event listener para selector de reactor
-            reactorSelector.addEventListener('change', (e) => {
-                updateReactorData(e.target.value);
-            });
-
-            // Inicializar con datos vacíos
-            updateReactorData('');
-
-        });
-    </script>
-</body>
-</html>
-```
