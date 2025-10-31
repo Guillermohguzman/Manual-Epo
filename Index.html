@@ -1,295 +1,239 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual de Operación: Reactores Epoxemex</title>
-    
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    
-    <style>
-        :root {
-            --primary-color: #0c4a6e;
-            --secondary-color: #ea580c;
-            --accent-color: #0369a1;
-            --background-color: #fffbeb;
-            --card-color: #ffffff;
-            --warning-color: #dc2626;
-            --success-color: #059669;
-        }
-        
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--background-color);
-            color: var(--primary-color);
-            line-height: 1.6;
-        }
-        
-        .nav-btn {
-            transition: all 0.3s ease;
-            padding: 0.75rem 1.25rem;
-            font-weight: 500;
-            border-bottom: 3px solid transparent;
-            color: #f0f9ff;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .nav-btn:hover::before {
-            left: 100%;
-        }
-        
-        .nav-btn:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-        
-        .nav-btn.active {
-            color: #ffffff;
-            border-bottom-color: var(--secondary-color);
-            background-color: var(--accent-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        .tab-btn {
-            transition: all 0.3s ease;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            border-bottom: 3px solid transparent;
-            color: var(--accent-color);
-            border-radius: 0.5rem 0.5rem 0 0;
-        }
-        
-        .tab-btn:hover {
-            background-color: #f0f9ff;
-            transform: translateY(-2px);
-        }
-        
-        .tab-btn.active {
-            color: var(--primary-color);
-            border-bottom-color: var(--secondary-color);
-            background-color: #f0f9ff;
-            font-weight: 600;
-        }
-        
-        .content-section {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(10px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-        
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            height: 400px;
-        }
-        
-        @media (max-width: 768px) {
-            .chart-container {
-                height: 300px;
-            }
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background-color: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary-color), #fb923c);
-            transition: width 0.5s ease;
-        }
-        
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        
-        .status-active {
-            background-color: var(--success-color);
-            box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.3);
-        }
-        
-        .status-inactive {
-            background-color: var(--warning-color);
-        }
-        
-        .status-warning {
-            background-color: #d97706;
-        }
-        
-        .critical-alert {
-            background: linear-gradient(135deg, #fef3c7, #fed7aa);
-            border-left: 4px solid var(--warning-color);
-        }
-        
-        .info-box {
-            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
-            border-left: 4px solid var(--accent-color);
-        }
-        
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background-color: var(--secondary-color);
-            color: white;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-        
-        .temperature-step {
-            transition: all 0.3s ease;
-        }
-        
-        .temperature-step.active {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Operación: Reactores Epoxemex</title>
+
+  <!-- ✅ Updated Tailwind CDN link -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- ✅ Chart.js valid CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" defer></script>
+
+  <style>
+    :root {
+      --primary-color: #0c4a6e;
+      --secondary-color: #ea580c;
+      --accent-color: #0369a1;
+      --background-color: #fffbeb;
+      --card-color: #ffffff;
+      --warning-color: #dc2626;
+      --success-color: #059669;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--background-color);
+      color: var(--primary-color);
+      line-height: 1.6;
+    }
+
+    /* Navigation styling */
+    .nav-btn {
+      transition: all 0.3s ease;
+      padding: 0.75rem 1.25rem;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+      color: #f0f9ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .nav-btn:hover::before { left: 100%; }
+    .nav-btn:hover { background-color: var(--accent-color); transform: translateY(-2px); }
+    .nav-btn.active {
+      color: #fff;
+      border-bottom-color: var(--secondary-color);
+      background-color: var(--accent-color);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    /* Tab buttons */
+    .tab-btn {
+      transition: all 0.3s ease;
+      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+      color: var(--accent-color);
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .tab-btn:hover {
+      background-color: #f0f9ff;
+      transform: translateY(-2px);
+    }
+
+    .tab-btn.active {
+      color: var(--primary-color);
+      border-bottom-color: var(--secondary-color);
+      background-color: #f0f9ff;
+      font-weight: 600;
+    }
+
+    .content-section {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      height: 400px;
+    }
+
+    @media (max-width: 768px) {
+      .chart-container { height: 300px; }
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar {
+      height: 8px;
+      background-color: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--secondary-color), #fb923c);
+      transition: width 0.5s ease;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .status-active {
+      background-color: var(--success-color);
+      box-shadow: 0 0 0 2px rgba(5,150,105,0.3);
+    }
+
+    .status-inactive { background-color: var(--warning-color); }
+    .status-warning { background-color: #d97706; }
+
+    .critical-alert {
+      background: linear-gradient(135deg, #fef3c7, #fed7aa);
+      border-left: 4px solid var(--warning-color);
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      border-left: 4px solid var(--accent-color);
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background-color: var(--secondary-color);
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .temperature-step { transition: all 0.3s ease; }
+    .temperature-step.active {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .hidden { display: none !important; }
+  </style>
 </head>
+
 <body class="bg-amber-50">
-
-    <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-bold text-sky-900">
-                        Manual de Operación: Reactores Epoxemex
-                    </h1>
-                    <p class="text-sm text-sky-700 mt-1">Versión 2.3 | Fecha: 14 de octubre de 2025</p>
-                </div>
-                <div class="hidden md:flex items-center space-x-2 bg-sky-100 px-4 py-2 rounded-lg">
-                    <span class="status-indicator status-active"></span>
-                    <span class="text-sm font-medium text-sky-800">Sistema Operativo</span>
-                </div>
-            </div>
+  <!-- Header -->
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-bold text-sky-900">
+            Manual de Operación: Reactores Epoxemex
+          </h1>
+          <p class="text-sm text-sky-700 mt-1">Versión 2.3 | Fecha: 14 de octubre de 2025</p>
         </div>
-        
-        <nav class="bg-sky-900 flex flex-wrap justify-center p-1 shadow-inner">
-            <button class="nav-btn active" data-target="inicio">Inicio</button>
-            <button class="nav-btn" data-target="seguridad">Protocolos de Seguridad</button>
-            <button class="nav-btn" data-target="procedimientos">Procedimientos de Operación</button>
-            <button class="nav-btn" data-target="parametros">Parámetros de Proceso</button>
-            <button class="nav-btn" data-target="interfaces">Conexiones del Sistema</button>
-            <button class="nav-btn" data-target="guia">Guía Rápida</button>
-        </nav>
-    </header>
+        <div class="hidden md:flex items-center space-x-2 bg-sky-100 px-4 py-2 rounded-lg">
+          <span class="status-indicator status-active"></span>
+          <span class="text-sm font-medium text-sky-800">Sistema Operativo</span>
+        </div>
+      </div>
+    </div>
 
-    <main id="content-container" class="p-4 md:p-8 max-w-7xl mx-auto">
+    <nav class="bg-sky-900 flex flex-wrap justify-center p-1 shadow-inner">
+      <button class="nav-btn active" data-target="inicio">Inicio</button>
+      <button class="nav-btn" data-target="seguridad">Protocolos de Seguridad</button>
+      <button class="nav-btn" data-target="procedimientos">Procedimientos de Operación</button>
+      <button class="nav-btn" data-target="parametros">Parámetros de Proceso</button>
+      <button class="nav-btn" data-target="interfaces">Conexiones del Sistema</button>
+      <button class="nav-btn" data-target="guia">Guía Rápida</button>
+    </nav>
+  </header>
 
-        <section id="inicio" class="content-section space-y-6">
-            <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">Bienvenido al Sistema de Control de Reactores</h2>
-            <p class="text-lg">
-                Este manual proporciona los protocolos técnicos para la operación, control y mantenimiento del sistema de calentamiento por aceite térmico y su control SCADA-PLC. El objetivo es garantizar una operación segura y eficiente.
-            </p>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-6 bg-white rounded-xl shadow-md border-l-4 border-sky-800 card-hover">
-                    <h3 class="text-2xl font-semibold mb-4 text-sky-800">Descripción General del Sistema</h3>
-                    <p class="mb-4">
-                        El sistema de control SCADA-PLC se divide en dos áreas funcionales principales que se comunican entre sí:
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <span class="bg-sky-100 text-sky-800 rounded-full p-2 mr-3 flex-shrink-0">🔥</span>
-                            <div>
-                                <strong class="font-semibold text-sky-800">Circuito Térmico (CT):</strong>
-                                <p class="text-sm mt-1">Gestiona todos los equipos relacionados con el aceite térmico, incluyendo sensores de temperatura, estado de válvulas, operación de agitadores y control de tanques de servicio.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="bg-sky-100 text-sky-800 rounded-full p-2 mr-3 flex-shrink-0">📊</span>
-                            <div>
-                                <strong class="font-semibold text-sky-800">Supervisión de Producción (SP):</strong>
-                                <p class="text-sm mt-1">Se enfoca en las variables críticas del producto dentro del reactor, como temperatura del producto y presión interna.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="p-6 bg-white rounded-xl shadow-md border-l-4 border-orange-500 card-hover">
-                    <h3 class="text-2xl font-semibold mb-4 text-sky-800">Estado del Sistema</h3>
-                    <div class="space-y-5">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-sm font-medium text-sky-700">Temperatura Promedio</span>
-                                <span class="text-sm font-medium text-sky-700">85°C</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-sm font-medium text-sky-700">Presión del Sistema</span>
-                                <span class="text-sm font-medium text-sky-700">3.2 bar</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 45%"></div>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 mt-4">
-                            <div class="bg-sky-50 p-4 rounded-lg text-center">
-                                <p class="text-sm text-sky-700">Reactores Activos</p>
-                                <p class="text-2xl font-bold text-sky-800">3/9</p>
-                            </div>
-                            <div class="bg-amber-50 p-4 rounded-lg text-center">
-                                <p class="text-sm text-amber-700">Próxima Mantención</p>
-                                <p class="text-lg font-bold text-amber-800">15 días</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- Main content -->
+  <main id="content-container" class="p-4 md:p-8 max-w-7xl mx-auto">
+    <!-- Sections here -->
+    <section id="inicio" class="content-section space-y-6">
+      <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">
+        Bienvenido al Sistema de Control de Reactores
+      </h2>
+      <p class="text-lg">
+        Este manual proporciona los protocolos técnicos para la operación, control y mantenimiento
+        del sistema de calentamiento por aceite térmico y su control SCADA-PLC.
+      </p>
+    </section>
 
-        <section id="seguridad" class="content-section hidden space-y-6">
-            <h2 class="text-3xl font-bold text-red-700 border-b-2 border-red
+    <!-- Add other sections here (seguridad, procedimientos, etc.) -->
+  </main>
+
+  <!-- ✅ Script to handle navigation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navButtons = document.querySelectorAll('.nav-btn');
+      const sections = document.querySelectorAll('.content-section');
+
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          navButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const targetId = btn.dataset.target;
+          sections.forEach(sec => sec.classList.toggle('hidden', sec.id !== targetId));
+        });
+      });
+    });
+  </script>
+</body>
+</html>
