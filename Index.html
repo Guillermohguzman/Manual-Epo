@@ -5,6 +5,528 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual de Operación: Reactores Epoxemex</title>
 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    :root {
+      --primary-color: #0c4a6e;
+      --secondary-color: #ea580c;
+      --accent-color: #0369a1;
+      --background-color: #fffbeb;
+      --card-color: #ffffff;
+      --warning-color: #dc2626;
+      --success-color: #059669;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--background-color);
+      color: var(--primary-color);
+      line-height: 1.6;
+    }
+
+    /* Navigation styling */
+    .nav-btn {
+      transition: all 0.3s ease;
+      padding: 0.75rem 1.25rem;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+      color: #f0f9ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .nav-btn:hover::before { left: 100%; }
+    .nav-btn:hover { background-color: var(--accent-color); transform: translateY(-2px); }
+    .nav-btn.active {
+      color: #fff;
+      border-bottom-color: var(--secondary-color);
+      background-color: var(--accent-color);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    .content-section {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      height: 400px;
+    }
+
+    @media (max-width: 768px) {
+      .chart-container { height: 300px; }
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar {
+      height: 8px;
+      background-color: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--secondary-color), #fb923c);
+      transition: width 0.5s ease;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .status-active {
+      background-color: var(--success-color);
+      box-shadow: 0 0 0 2px rgba(5,150,105,0.3);
+    }
+
+    .status-inactive { background-color: var(--warning-color); }
+    .status-warning { background-color: #d97706; }
+
+    .critical-alert {
+      background: linear-gradient(135deg, #fef3c7, #fed7aa);
+      border-left: 4px solid var(--warning-color);
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      border-left: 4px solid var(--accent-color);
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background-color: var(--secondary-color);
+      color: white;
+      border-radius: 50%;
+      font-weight: bold;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+
+<body class="bg-amber-50">
+  <!-- Header -->
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-bold text-sky-900">
+            Manual de Operación: Reactores Epoxemex
+          </h1>
+          <p class="text-sm text-sky-700 mt-1">Versión 2.3 | Fecha: 14 de octubre de 2025</p>
+        </div>
+        <div class="hidden md:flex items-center space-x-2 bg-sky-100 px-4 py-2 rounded-lg">
+          <span class="status-indicator status-active"></span>
+          <span class="text-sm font-medium text-sky-800">Sistema Operativo</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bg-sky-900 flex flex-wrap justify-center p-1 shadow-inner">
+      <button class="nav-btn active" data-target="inicio">Inicio</button>
+      <button class="nav-btn" data-target="seguridad">Protocolos de Seguridad</button>
+      <button class="nav-btn" data-target="procedimientos">Procedimientos de Operación</button>
+      <button class="nav-btn" data-target="parametros">Parámetros de Proceso</button>
+      <button class="nav-btn" data-target="interfaces">Conexiones del Sistema</button>
+      <button class="nav-btn" data-target="guia">Guía Rápida</button>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main id="content-container" class="p-4 md:p-8 max-w-7xl mx-auto">
+    <!-- Sección Inicio -->
+    <section id="inicio" class="content-section space-y-6">
+      <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">
+        Bienvenido al Sistema de Control de Reactores
+      </h2>
+      <p class="text-lg">
+        Este manual proporciona los protocolos técnicos para la operación, control y mantenimiento
+        del sistema de calentamiento por aceite térmico y su control SCADA-PLC.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+          <h3 class="text-xl font-bold text-sky-700 mb-3">Estado del Sistema</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="font-medium">Temperatura Reactor 1</span>
+              <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">85°C</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-medium">Presión del Sistema</span>
+              <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">2.5 Bar</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-medium">Nivel de Aceite</span>
+              <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">78%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+          <h3 class="text-xl font-bold text-sky-700 mb-3">Acciones Rápidas</h3>
+          <div class="space-y-3">
+            <button class="w-full bg-sky-600 hover:bg-sky-700 text-white py-2 px-4 rounded-lg transition duration-200">
+              Iniciar Ciclo de Calentamiento
+            </button>
+            <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg transition duration-200">
+              Parada de Emergencia
+            </button>
+            <button class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-lg transition duration-200">
+              Ver Reportes
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Seguridad -->
+    <section id="seguridad" class="content-section hidden space-y-6">
+      <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">
+        Protocolos de Seguridad
+      </h2>
+      
+      <div class="critical-alert p-4 rounded-lg my-4">
+        <h3 class="font-bold text-lg text-amber-800">⚠️ Advertencia de Seguridad</h3>
+        <p class="text-amber-700">Siga estrictamente estos protocolos para prevenir accidentes y garantizar la integridad del equipo.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h3 class="text-xl font-bold text-sky-700 mb-3">Equipo de Protección Personal</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Guantes resistentes al calor</li>
+            <li>Gafas de seguridad</li>
+            <li>Bata ignífuga</li>
+            <li>Calzado de seguridad</li>
+          </ul>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h3 class="text-xl font-bold text-sky-700 mb-3">Procedimientos de Emergencia</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Conocer ubicación de extintores</li>
+            <li>Procedimiento de parada de emergencia</li>
+            <li>Rutas de evacuación</li>
+            <li>Números de contacto de emergencia</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Procedimientos -->
+    <section id="procedimientos" class="content-section hidden space-y-6">
+      <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">
+        Procedimientos de Operación
+      </h2>
+      
+      <div class="info-box p-4 rounded-lg my-4">
+        <h3 class="font-bold text-lg text-sky-800">📋 Procedimiento Estándar</h3>
+        <p class="text-sky-700">Siga estos pasos en orden para garantizar una operación segura y eficiente.</p>
+      </div>
+      
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <div class="flex items-start mb-4">
+          <div class="step-number">1</div>
+          <div>
+            <h4 class="font-bold text-lg">Verificación Inicial</h4>
+            <p>Comprobar niveles de aceite térmico, estado de válvulas y conexiones eléctricas.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start mb-4">
+          <div class="step-number">2</div>
+          <div>
+            <h4 class="font-bold text-lg">Arranque del Sistema</h4>
+            <p>Encender bomba de circulación y activar calentamiento gradual.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start mb-4">
+          <div class="step-number">3</div>
+          <div>
+            <h4 class="font-bold text-lg">Monitoreo Continuo</h4>
+            <p>Supervisar temperatura, presión y flujo durante todo el proceso.</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start">
+          <div class="step-number">4</div>
+          <div>
+            <h4 class="font-bold text-lg">Apagado Controlado</h4>
+            <p>Reducir temperatura gradualmente antes de detener la bomba de circulación.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Parámetros -->
+    <section id="parametros" class="content-section hidden space-y-6">
+      <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">
+        Parámetros de Proceso
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h3 class="text-xl font-bold text-sky-700 mb-4">Rangos Operativos</h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-medium">Temperatura Reactor</span>
+                <span class="text-sm text-gray-600">80-120°C</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 70%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-medium">Presión Sistema</span>
+                <span class="text-sm text-gray-600">2-4 Bar</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-medium">Flujo Aceite</span>
+                <span class="text-sm text-gray-600">30-60 L/min</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h3 class="text-xl font-bold text-sky-700 mb-4">Temperatura vs Tiempo</h3>
+          <div class="chart-container">
+            <canvas id="temperatureChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Interfaces -->
+    <section id="interfaces" class="content-section hidden space-y-6">
+      <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">
+        Conexiones del Sistema
+      </h2>
+      
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <h3 class="text-xl font-bold text-sky-700 mb-4">Diagrama de Conexiones SCADA-PLC</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-sky-50 p-4 rounded-lg border border-sky-200">
+            <h4 class="font-bold text-sky-800 mb-2">Entradas Digitales</h4>
+            <ul class="space-y-1 text-sm">
+              <li>• Botón de Emergencia</li>
+              <li>• Nivel Bajo de Aceite</li>
+              <li>• Presión Alta</li>
+              <li>• Temperatura Límite</li>
+            </ul>
+          </div>
+          
+          <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+            <h4 class="font-bold text-orange-800 mb-2">Salidas Digitales</h4>
+            <ul class="space-y-1 text-sm">
+              <li>• Válvula de Seguridad</li>
+              <li>• Bomba de Circulación</li>
+              <li>• Calentador Principal</li>
+              <li>• Alarma Sonora</li>
+            </ul>
+          </div>
+          
+          <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+            <h4 class="font-bold text-green-800 mb-2">Entradas Analógicas</h4>
+            <ul class="space-y-1 text-sm">
+              <li>• Temperatura Reactor</li>
+              <li>• Presión Sistema</li>
+              <li>• Flujo de Aceite</li>
+              <li>• Nivel de Tanque</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Guía Rápida -->
+    <section id="guia" class="content-section hidden space-y-6">
+      <h2 class="text-3xl font-bold text-sky-800 border-b-2 border-orange-500 pb-2">
+        Guía Rápida de Operación
+      </h2>
+      
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <h3 class="text-xl font-bold text-sky-700 mb-4">Resumen de Procedimientos</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-bold text-lg text-sky-800 mb-2">Inicio Rápido</h4>
+            <ol class="list-decimal pl-5 space-y-2">
+              <li>Verificar niveles y conexiones</li>
+              <li>Encender bomba de circulación</li>
+              <li>Activar calentamiento gradual</li>
+              <li>Monitorear parámetros</li>
+            </ol>
+          </div>
+          
+          <div>
+            <h4 class="font-bold text-lg text-sky-800 mb-2">Parada Rápida</h4>
+            <ol class="list-decimal pl-5 space-y-2">
+              <li>Desactivar calentamiento</li>
+              <li>Mantener bomba en funcionamiento</li>
+              <li>Esperar temperatura < 60°C</li>
+              <li>Apagar bomba de circulación</li>
+            </ol>
+          </div>
+        </div>
+        
+        <div class="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <h4 class="font-bold text-red-800 mb-2">⚠️ Parada de Emergencia</h4>
+          <p class="text-red-700">Presione el botón rojo de emergencia para detener inmediatamente todo el sistema. Solo usar en situaciones de peligro inminente.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-sky-900 text-white py-6 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>Manual de Operación - Reactores Epoxemex © 2025</p>
+      <p class="text-sky-200 text-sm mt-2">Para consultas técnicas contactar al departamento de ingeniería.</p>
+    </div>
+  </footer>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Script para navegación y gráficos -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Navegación entre secciones
+      const navButtons = document.querySelectorAll('.nav-btn');
+      const sections = document.querySelectorAll('.content-section');
+
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          navButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const targetId = btn.dataset.target;
+          sections.forEach(sec => {
+            sec.classList.toggle('hidden', sec.id !== targetId);
+            
+            // Inicializar gráfico cuando se muestre la sección de parámetros
+            if (sec.id === 'parametros' && sec.id === targetId) {
+              setTimeout(initializeChart, 100);
+            }
+          });
+        });
+      });
+
+      // Función para inicializar el gráfico
+      function initializeChart() {
+        const tempCtx = document.getElementById('temperatureChart');
+        if (!tempCtx) return;
+        
+        // Destruir gráfico existente si hay uno
+        if (window.temperatureChartInstance) {
+          window.temperatureChartInstance.destroy();
+        }
+        
+        window.temperatureChartInstance = new Chart(tempCtx, {
+          type: 'line',
+          data: {
+            labels: ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00'],
+            datasets: [{
+              label: 'Temperatura (°C)',
+              data: [25, 45, 60, 75, 85, 90, 85],
+              borderColor: '#ea580c',
+              backgroundColor: 'rgba(234, 88, 12, 0.1)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                title: {
+                  display: true,
+                  text: 'Temperatura (°C)'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Tiempo (horas)'
+                }
+              }
+            }
+          }
+        });
+      }
+
+      // Inicializar gráfico si la sección de parámetros está activa al cargar
+      if (document.getElementById('parametros') && !document.getElementById('parametros').classList.contains('hidden')) {
+        setTimeout(initializeChart, 500);
+      }
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Operación: Reactores Epoxemex</title>
+
   <!-- ✅ Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
